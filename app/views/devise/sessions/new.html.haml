@@ -1,0 +1,48 @@
+/ Page background
+#page-signin-bg
+  / Background overlay
+  .overlay
+  / Replace this with your bg image
+
+/ / Page background
+/ Container
+.signin-container
+  / Left side
+  .signin-info
+    %a.logo{:href => root_path}
+      Big-Two Scoreboard
+    / / .logo
+    .slogan= t('signs.slogan')
+    / / .slogan
+    -# %ul
+    -#   %li
+    -#     %i.fa.fa-sitemap.signin-icon
+    -#     Flexible modular structure
+    -#   %li
+    -#     %i.fa.fa-file-text-o.signin-icon
+    -#     LESS &amp; SCSS source files
+    -#   %li
+    -#     %i.fa.fa-outdent.signin-icon
+    -#     RTL direction support
+    -#   %li
+    -#     %i.fa.fa-heart.signin-icon
+    -#     Crafted with love
+    / / Info list
+  / / Left side
+  / Right side
+  .signin-form
+    / Form
+    #signin-form_id
+      .signin-text
+        %span= t('signs.signin_text')
+      / / .signin-text
+    / / Form
+    / "Sign In with" block
+    .signin-with
+      / Facebook
+      = link_to player_omniauth_authorize_path(:facebook), class: 'signin-with-btn', style: "background:#4f6faa;background:rgba(79, 111, 170, .8);" do
+        Sign In with
+        %span Facebook
+    / / "Sign In with" block
+  / Right side
+/ / Container

@@ -1,0 +1,61 @@
+tw:
+  sign_in : '登入'
+  sign_out: '登出'
+
+  options  : '選項'
+  settings: '設定'
+  profile : '個人資料'
+
+  helper:
+    you_are_here       : '目前在:'
+    are_you_sure_delete: '確定刪除嗎?'
+    list               : '清單'
+    add                : '新增'
+    add_project        : '建立專案'
+    edit               : '修改'
+    update             : '更新'
+    delete             : '刪除'
+    save               : '儲存'
+    danger             : '注意'
+    updated            : '更新完成'
+    back               : '返回'
+
+
+  signs:
+    slogan: '用大老二改變你手上的錢吧!!'
+    signin_text: '登入你的Facebook吧!!'
+
+  project:
+    name      : '名稱'
+    url       : '網址'
+    stylesheet: 'CSS'
+    del_description: '刪除專案'
+
+  profiles:
+    name:     '姓名'
+    username: '使用者帳戶'
+    email:    'Email'
+    url:      '網址'
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              taken  : '使用者帳戶重複'
+              blank  : '請輸入使用者帳戶'
+            name:
+              blank  : '請輸入姓名'
+            email:
+              blank  : '請輸入Email'
+              taken  : 'Email重複'
+              invalid: 'Email 格式錯誤'
+        project:
+          attributes:
+            url:
+              invalid: '網址格式錯誤'
+              blank  : '請輸入網址'
+            name:
+              taken  : '專案名稱重複'
+              blank  : '請輸入專案名稱'

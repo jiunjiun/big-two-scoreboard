@@ -1,0 +1,34 @@
+#main-navbar.navbar.navbar-inverse{:role => "navigation"}
+  .navbar-inner
+    / Main navbar header
+    .navbar-header
+      / Logo
+      %a.navbar-brand{:href => root_path}
+        -# = image_tag("icon/icon_32.png", alt: "Redesign", size: "24x24", class: "menu_icon")
+        Big-Two Scoreboard
+      / Main navbar toggle
+      %button.navbar-toggle.collapsed{"data-target" => "#main-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %i.navbar-icon.fa.fa-bars
+    / / .navbar-header
+    #main-navbar-collapse.collapse.navbar-collapse.main-navbar-collapse
+      / / .navbar-nav
+      .right.clearfix
+        %ul.nav.navbar-nav.pull-right.right-navbar-nav
+          - if player_signed_in?
+            %li
+              = link_to current_player.username, class: "user-menu"  do
+                = image_tag "http://graph.facebook.com/v2.2/#{current_player.uid}/picture?type=normal", size: "24x24", alt: current_player.name
+                %span
+                  %strong= current_player.name
+              %li
+                = link_to destroy_player_session_path, method: :delete, data: {toggle: "tooltip", placement: "bottom", "original-title"=> t('sign_out')} do
+                  %i.fa.fa-power-off
+          - else
+            %li
+              = button_to player_omniauth_authorize_path(:facebook), class: 'btn btn-primary btn-flat navbar-btn' do
+                %i.fa.fa-facebook
+                = t('sign_in')
+          / / .navbar-nav
+        / / .right
+    / / #main-navbar-collapse
+  / / .navbar-inner

@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-
-
-  devise_for :players
+  devise_for :players, :controllers => { omniauth_callbacks: "players/omniauth_callbacks", sessions: "players/sessions" }, skip: [:registration]
 
   root 'index#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with "root"routes
   # root 'welcome#index'
 
   # Example of regular route:

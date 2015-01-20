@@ -12,7 +12,7 @@
   <!-- Open Sans font from Google CDN -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'sign_in', media: 'all', 'data-turbolinks-track' => true %>
 
   <script src="https://rawgithub.com/stubbornella/csslint/master/release/csslint.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -23,15 +23,9 @@
 
   <%= analytics_init if Rails.env.production? %>
 </head>
-<body class="theme-silver main-menu-animated" cz-shortcut-listen="true">
+<body class="theme-silver main-menu-animated page-signin" cz-shortcut-listen="true">
 
-<%= render partial: "common/nav" %>
+<%= yield %>
 
-<div id="content-wrapper">
-  <article>
-    <%= yield %>
-  </article>
-</div>
-<!-- <%= render partial: "common/footer" %> -->
 </body>
 </html>
