@@ -29,3 +29,9 @@ config/secrets.yml
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+
+# config setting
+/config/*.yml
+/config/deploy.rb
+/lib/tasks/user.rake
+/public/uploads/*

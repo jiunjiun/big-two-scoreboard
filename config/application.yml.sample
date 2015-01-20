@@ -1,0 +1,16 @@
+defaults: &defaults
+  facebook:
+    app_id: ""
+    secret: ""
+
+  google:
+    analytics_key: ""
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
