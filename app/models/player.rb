@@ -1,4 +1,7 @@
 class Player < ActiveRecord::Base
+  has_many :boards
+  has_many :records
+
   has_one :identity, -> { select(:uid) }, class_name: :Identity
 
   def uid
@@ -32,7 +35,6 @@ class Player < ActiveRecord::Base
 
     # Create the user if needed
     if player.nil?
-
       # Get the existing user by email if the provider gives us a verified email.
       # If no verified email was provided we assign a temporary email and ask the
       # user to verify it on the next step via UsersController.finish_signup
@@ -42,7 +44,6 @@ class Player < ActiveRecord::Base
 
       # Create the user if it's a new registration
       if player.nil?
-        Rails.logger.debug { "++++ #{auth.to_json}" }
         player = Player.new(
           name: auth.extra.raw_info.name,
           username: auth.info.nickname || auth.uid,

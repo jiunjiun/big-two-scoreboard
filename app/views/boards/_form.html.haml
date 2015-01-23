@@ -1,0 +1,19 @@
+= form_for @board do |f|
+  .form-group{class: ('has-error' if @board.errors.include? :title)}
+    = f.label :title, t('boards.title'), class: 'control-label'
+    = f.text_field :title, class: 'form-control', placeholder: t('boards.placeholder.title')
+    - if @board.errors.include? :title
+      %p.help-block
+        - @board.errors[:title].each do |message|
+          = message
+  .form-group{class: ('has-error' if @board.errors.include? :wager)}
+    = f.label :wager, t('boards.wager'), class: 'control-label'
+    = f.number_field :wager, class: 'form-control', placeholder: t('boards.placeholder.wager')
+    - if @board.errors.include? :wager
+      %p.help-block
+        - @board.errors[:wager].each do |message|
+          = message
+  .form-group
+    .pull-right
+      = link_to t('helpers.back'), root_path, class: 'btn btn-default btn-flat'
+      = f.submit class: 'btn btn-success btn-flat'

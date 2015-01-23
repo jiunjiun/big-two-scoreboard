@@ -1,0 +1,34 @@
+.panel
+  .panel-heading
+    %span.panel-title
+      %i.panel-title-icon.fa.fa-smile-o
+    .panel-heading-controls
+      %span.panel-heading-text
+        = link_to t('helpers.setting_player'), new_board_record_path, class: "btn btn-xs btn-success"
+        \&nbsp;&nbsp;
+        %span.text-light-gray
+          |
+        \&nbsp;&nbsp;
+      %ul.pagination.pagination-xs
+        %li
+          %a{:href => "#"} «
+        %li.active
+          %a{:href => "#"} 1
+        %li
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} »
+    / / .panel-heading-controls
+  / / .panel-heading
+  %table.table
+    %thead
+      %tr
+        %th.col-md-3= t('date')
+        %th= t('player')
+        %th= t('wager')
+    %tbody.valign-middle
+      - @record.each do |record|
+        %tr
+

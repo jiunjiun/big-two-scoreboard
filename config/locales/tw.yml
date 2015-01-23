@@ -6,7 +6,7 @@ tw:
   settings: '設定'
   profile : '個人資料'
 
-  helper:
+  helpers:
     you_are_here       : '目前在:'
     are_you_sure_delete: '確定刪除嗎?'
     list               : '清單'
@@ -19,23 +19,18 @@ tw:
     danger             : '注意'
     updated            : '更新完成'
     back               : '返回'
+    setting_player     : '設定玩家'
 
+  boards:
+    title: '標題'
+    wager: '賭注'
+    placeholder:
+      title: '選填'
+      wager: '賭注'
 
   signs:
     slogan: '用大老二改變你手上的錢吧!!'
     signin_text: '登入你的Facebook吧!!'
-
-  project:
-    name      : '名稱'
-    url       : '網址'
-    stylesheet: 'CSS'
-    del_description: '刪除專案'
-
-  profiles:
-    name:     '姓名'
-    username: '使用者帳戶'
-    email:    'Email'
-    url:      '網址'
 
   activerecord:
     errors:

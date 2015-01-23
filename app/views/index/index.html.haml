@@ -1,0 +1,41 @@
+.panel
+  .panel-heading
+    %span.panel-title
+      %i.panel-title-icon.fa.fa-smile-o
+    .panel-heading-controls
+      %span.panel-heading-text
+        = link_to t('helpers.add'), new_board_path, class: "btn btn-xs btn-success"
+        \&nbsp;&nbsp;
+        %span.text-light-gray
+          |
+        \&nbsp;&nbsp;
+      %ul.pagination.pagination-xs
+        %li
+          %a{:href => "#"} «
+        %li.active
+          %a{:href => "#"} 1
+        %li
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} »
+    / / .panel-heading-controls
+  / / .panel-heading
+  %table.table
+    %thead
+      %tr
+        %th.col-md-3= t('date')
+        %th= t('title')
+        %th= t('wager')
+        %th
+    %tbody.valign-middle
+      - @boards.each do |board|
+        %tr
+          %td= board.created_at
+          %td= link_to board.title, board_records_path(board)
+          %td= board.wager
+          %td
+            .pull-right
+              = link_to t('helpers.edit'), edit_board_path(board), class: "btn btn-xs"
+              = link_to t('helpers.delete'), board_path(board), class: "btn btn-xs", method: :delete, data: {confirm: t('helpers.are_you_sure_delete')}

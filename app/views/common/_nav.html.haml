@@ -16,7 +16,7 @@
         %ul.nav.navbar-nav.pull-right.right-navbar-nav
           - if player_signed_in?
             %li
-              = link_to current_player.username, class: "user-menu"  do
+              = link_to "#", class: "user-menu"  do
                 = image_tag "http://graph.facebook.com/v2.2/#{current_player.uid}/picture?type=normal", size: "24x24", alt: current_player.name
                 %span
                   %strong= current_player.name

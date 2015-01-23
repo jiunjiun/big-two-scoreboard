@@ -11,19 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120074136) do
+ActiveRecord::Schema.define(version: 20150120115622) do
 
-  create_table "games", force: :cascade do |t|
+  create_table "boards", force: :cascade do |t|
     t.integer  "player_id"
-    t.string   "title",                  null: false
-    t.integer  "score",      default: 0
-    t.integer  "identity",   default: 1
+    t.string   "title"
     t.integer  "wager",      default: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  add_index "games", ["player_id"], name: "index_games_on_player_id"
+  add_index "boards", ["player_id"], name: "index_boards_on_player_id"
 
   create_table "identities", force: :cascade do |t|
     t.integer  "player_id"
@@ -60,12 +58,15 @@ ActiveRecord::Schema.define(version: 20150120074136) do
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
 
   create_table "records", force: :cascade do |t|
-    t.integer  "game_id"
+    t.integer  "board_id"
+    t.integer  "player_id"
+    t.string   "anonymous"
     t.integer  "score",      default: 0
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  add_index "records", ["game_id"], name: "index_records_on_game_id"
+  add_index "records", ["board_id"], name: "index_records_on_board_id"
+  add_index "records", ["player_id"], name: "index_records_on_player_id"
 
 end
