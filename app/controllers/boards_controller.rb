@@ -1,15 +1,14 @@
 class BoardsController < ApplicationController
   before_action :authenticate_player!
-  before_action :set_board, only: [:edit, :update, :destroy]
+  before_action :set_board, only: [:show, :players, :edit, :update, :destroy]
 
   def new
     @board = Board.new
   end
 
   def show
-    board    = Board.find(params[:id])
-    @bps     = BoardPlayer.where(board: board)
-    @records = Record.where(board: board).order(created_at: :desc)
+    @bps     = BoardPlayer.where(board: @board)
+    @records = Record.where(board: @board).order(created_at: :desc)
   end
 
   def edit
@@ -38,9 +37,8 @@ class BoardsController < ApplicationController
   end
 
   def players
-    board   = Board.find(params[:id])
-    @new_bp = BoardPlayer.new({board: board})
-    @bps    = BoardPlayer.where({board: board})
+    @new_bp = BoardPlayer.new({board: @board})
+    @bps    = BoardPlayer.where({board: @board})
   end
 
   def search_player
