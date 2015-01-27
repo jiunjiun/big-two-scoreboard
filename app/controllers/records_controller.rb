@@ -3,6 +3,7 @@ class RecordsController < ApplicationController
   def index
     board = Board.find(params[:board_id])
     @record = Record.where(board: board).order(created_at: :desc)
+    @players = Record.where(board: board).select(:player_id, :anonymous).distinct
   end
 
   def show

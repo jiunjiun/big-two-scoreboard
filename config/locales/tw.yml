@@ -2,7 +2,7 @@ tw:
   sign_in : '登入'
   sign_out: '登出'
 
-  options  : '選項'
+  options : '選項'
   settings: '設定'
   profile : '個人資料'
 
@@ -14,12 +14,18 @@ tw:
     add_project        : '建立專案'
     edit               : '修改'
     update             : '更新'
+    cancel             : '取消'
     delete             : '刪除'
     save               : '儲存'
     danger             : '注意'
     updated            : '更新完成'
     back               : '返回'
-    setting_player     : '設定玩家'
+    set_player         : '設定玩家'
+    new_game           : '新遊戲'
+    new_player         : '新玩家'
+    game_mode          : '遊戲模式'
+    players            : '玩家清單'
+    player             : '玩家'
 
   boards:
     title: '標題'
@@ -27,6 +33,11 @@ tw:
     placeholder:
       title: '選填'
       wager: '賭注'
+
+  boars_players:
+    anonymous: '名字'
+    placeholder:
+      anonymous: '名字'
 
   signs:
     slogan: '用大老二改變你手上的錢吧!!'

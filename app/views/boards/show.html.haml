@@ -1,0 +1,45 @@
+.panel
+  .panel-body
+    = link_to t('helpers.new_game'), players_board_path, class: "btn btn-danger btn-xs"
+    \&nbsp;&nbsp;
+    = link_to t('helpers.set_player'), players_board_path, class: "btn btn-info btn-xs"
+    -# .pull-right
+      -# %a.btn.btn-info.btn-xs{href: '#'}= t('helpers.game_mode')
+.panel
+  .panel-heading
+    %span.panel-title
+      %i.panel-title-icon.fa.fa-bars
+    .panel-heading-controls
+      %span.panel-heading-text
+
+      -# %ul.pagination.pagination-xs
+      -#   %li
+      -#     %a{:href => "#"} «
+      -#   %li.active
+      -#     %a{:href => "#"} 1
+      -#   %li
+      -#     %a{:href => "#"} 2
+      -#   %li
+      -#     %a{:href => "#"} 3
+      -#   %li
+      -#     %a{:href => "#"} »
+    / / .panel-heading-controls
+  / / .panel-heading
+  %table.table
+    %thead
+      %tr
+        %th.col-md-3
+        - @bps.each do |bp|
+          %th
+            - if bp.anonymous
+              = bp.anonymous
+            - else
+              = bp.player.name
+    %tbody.valign-middle
+      -# - player_records(@players, @records).each do |record|
+      -#   %tr
+          -# %td= record.created_at
+          -# %td= record.player.name
+          -# %td= record.score
+
+-# = player_records(@players, @records).to_json

@@ -45,5 +45,8 @@ $ ->
   initialize = ->
     $('[data-toggle="tooltip"]').tooltip()
 
+  # init.push ->
+  #   $('.modal-dialog').modal()
+
   $(document).ready(initialize)
   $(document).on('page:load', initialize)

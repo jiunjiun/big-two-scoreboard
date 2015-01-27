@@ -3,7 +3,6 @@ class CreateRecords < ActiveRecord::Migration
     create_table :records do |t|
       t.references :board,  index: true
       t.references :player, index: true
-      t.string     :anonymous, null: true
       t.integer    :score,  default: 0
 
       t.timestamps null: false

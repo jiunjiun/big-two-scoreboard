@@ -1,0 +1,54 @@
+.page-header
+  %h1
+    %span= t('helpers.set_player')
+.panel
+  .panel-heading
+    %span.panel-title= t('helpers.players')
+
+  %table.table
+    %thead
+      %tr
+        %th.col-md-2
+          = link_to '#new_player', class: 'btn btn-xs btn-primary', data: {target: '#new_player', toggle: 'modal'} do
+            %i.fa.fa-user-plus
+            = t('helpers.new_player')
+        %th= t('helpers.player')
+    %tbody
+      - @bps.each do |bp|
+        %tr
+          %td= link_to t('helpers.delete'), destroy_player_board_path(params[:id], bp), method: :delete
+          %td
+            - if bp.anonymous
+              = bp.anonymous
+            - else
+              = image_tag "http://graph.facebook.com/v2.2/#{bp.player.uid}/picture?type=normal", size: "24x24", alt: bp.player.name
+              = bp.player.name
+
+#new_player.modal.fade{:role => "dialog", :style => "display: none;", :tabindex => "-1"}
+  .modal-dialog{ style: "z-index: 1060;"}
+    .modal-content
+      = form_for @new_bp, url:create_player_board_path do |f|
+        = f.hidden_field :player_id
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h4.modal-title= t('helpers.new_player')
+        .modal-body
+          = f.label :anonymous, t('boars_players.anonymous'), class: 'control-label'
+          = f.text_field :anonymous, class: 'form-control', autocomplete: 'off'
+          %br/
+          .players.hide
+            .panel.widget-messages-alt
+              / / .panel-heading
+              .panel-body.padding-sm
+                .messages-list
+                .message.sample.hide
+                  %img.message-avatar{:alt => "", :src => ""}
+                  %a.message-subject{:href => "#"}
+                -# %a.messages-link{:href => "#"} MORE MESSAGES
+              / / .panel-body
+        .modal-footer
+          = f.submit t('helpers.cancel'), class: 'btn btn-default btn-flat', data: {dismiss: 'modal'}
+          = f.submit t('helpers.add'), class: 'btn btn-success btn-flat'
+    / / .modal-content
+  / / .modal-dialog
+/ / .modal

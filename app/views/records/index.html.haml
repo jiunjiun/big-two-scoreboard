@@ -26,9 +26,19 @@
     %thead
       %tr
         %th.col-md-3= t('date')
-        %th= t('player')
-        %th= t('wager')
+        - @players.each do |player|
+          - if player.anonymous?
+            %th= player.anonymous
+          - else
+            %th= player.player.name
     %tbody.valign-middle
       - @record.each do |record|
         %tr
+          %td= record.created_at
+          - if record.anonymous?
+            %td= record.anonymous
+          - else
+            %td= record.player.name
+          %td= record.score
+
 
