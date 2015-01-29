@@ -7,8 +7,9 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @bps     = BoardPlayer.where(board: @board)
-    @records = Record.where(board: @board).order(created_at: :desc)
+    @bps      = BoardPlayer.where(board: @board)
+    @records  = Record.where(board: @board).order(created_at: :desc)
+    @new_game = Record.new
   end
 
   def edit
@@ -36,8 +37,23 @@ class BoardsController < ApplicationController
     redirect_to root_path
   end
 
+  # Game
+  def create_game
+    if params[:scores].size == params[:board_players].size
+      scores = params[:scores]
+      scores.each_with_index do |score, i|
+        record = Record.new({board_id: params[:id], board_player_id: params[:board_players][i], score: score})
+        t = record.save
+        Rails.logger.debug { "+++++ #{record.to_json}" }
+      end
+    end
+    redirect_to board_path
+  end
+  # --
+
+  # Player
   def players
-    @new_bp = BoardPlayer.new({board: @board})
+    @new_bp = BoardPlayer.new
     @bps    = BoardPlayer.where({board: @board})
   end
 
@@ -54,6 +70,7 @@ class BoardsController < ApplicationController
     BoardPlayer.find(params[:bp_id]).delete
     redirect_to players_board_path
   end
+  # --
 
   private
     def set_board

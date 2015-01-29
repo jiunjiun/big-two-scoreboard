@@ -70,13 +70,13 @@ ActiveRecord::Schema.define(version: 20150127100535) do
 
   create_table "records", force: :cascade do |t|
     t.integer  "board_id"
-    t.integer  "player_id"
-    t.integer  "score",      default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "board_player_id"
+    t.integer  "score",           default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "records", ["board_id"], name: "index_records_on_board_id"
-  add_index "records", ["player_id"], name: "index_records_on_player_id"
+  add_index "records", ["board_player_id"], name: "index_records_on_board_player_id"
 
 end

@@ -38,7 +38,9 @@ $ ->
       $('input#board_player_player_id').val('')
 
     # --
-
+    $('.modal-body > select').change ->
+      console.log $(this).html()
+      console.log $('.modal-body').index($(this).parent())
 
 
 

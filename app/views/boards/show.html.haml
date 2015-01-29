@@ -1,6 +1,8 @@
 .panel
   .panel-body
-    = link_to t('helpers.new_game'), players_board_path, class: "btn btn-danger btn-xs"
+    = link_to '#new_game', class: 'btn btn-xs btn-danger', data: {target: '#new_game', toggle: 'modal'} do
+      %i.fa.fa-game
+      = t('helpers.new_game')
     \&nbsp;&nbsp;
     = link_to t('helpers.set_player'), players_board_path, class: "btn btn-info btn-xs"
     -# .pull-right
@@ -29,18 +31,31 @@
   %table.table
     %thead
       %tr
-        %th.col-md-3
         - @bps.each do |bp|
           %th
-            - if bp.anonymous
-              = bp.anonymous
-            - else
-              = bp.player.name
+            = board_player_name(bp)
     %tbody.valign-middle
-      -# - player_records(@players, @records).each do |record|
-      -#   %tr
-          -# %td= record.created_at
-          -# %td= record.player.name
-          -# %td= record.score
+      - recored_transform(@bps, @records).each_with_index do |records|
+        %tr
+          - records.each do |record|
+            %td= record
 
--# = player_records(@players, @records).to_json
+#new_game.modal.fade{:role => "dialog", :style => "display: none;", :tabindex => "-1"}
+  .modal-dialog{ style: "z-index: 1060;"}
+    .modal-content
+      = form_for @new_game, url:create_game_board_path do |f|
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h4.modal-title= t('helpers.new_game')
+        .modal-body
+          - @bps.each do |bp|
+            = label_tag board_player_name(bp), nil, class: 'control-label'
+            = select_tag 'scores[]', options_from_wager(@board.wager), {class: 'form-control'}
+            = hidden_field_tag 'board_players[]', bp.id
+            %br/
+        .modal-footer
+          = f.submit t('helpers.cancel'), class: 'btn btn-default btn-flat', data: {dismiss: 'modal'}
+          = f.submit t('helpers.clearing'), class: 'btn btn-success btn-flat'
+    / / .modal-content
+  / / .modal-dialog
+/ / .modal

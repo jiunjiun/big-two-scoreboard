@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get  'players'
       post 'create_player'
       delete 'destroy_player/:bp_id', to: 'boards#destroy_player', as: 'destroy_player'
+
+      post 'create_game'
     end
 
     collection do

@@ -26,6 +26,7 @@ tw:
     game_mode          : '遊戲模式'
     players            : '玩家清單'
     player             : '玩家'
+    clearing           : '結算'
 
   boards:
     title: '標題'
@@ -38,6 +39,11 @@ tw:
     anonymous: '名字'
     placeholder:
       anonymous: '名字'
+
+  records:
+    score: '分數'
+    placeholder:
+      anonymous: '分數'
 
   signs:
     slogan: '用大老二改變你手上的錢吧!!'

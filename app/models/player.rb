@@ -1,6 +1,5 @@
 class Player < ActiveRecord::Base
   has_many :boards
-  has_many :records
   has_many :board_players
 
   has_one :identity, -> { select(:uid) }, class_name: :Identity
