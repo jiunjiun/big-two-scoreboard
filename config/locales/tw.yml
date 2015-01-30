@@ -71,3 +71,10 @@ tw:
             name:
               taken  : '專案名稱重複'
               blank  : '請輸入專案名稱'
+
+  time:
+    formats:
+      yymmdd: '%Y年%m月%d日'
+      yymmdd_s: '%Y/%m/%d'
+      ymds: '%Y年%m月%d日 %T'
+

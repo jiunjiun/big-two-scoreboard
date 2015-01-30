@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :authenticate_player!
+
   before_action :set_board, only: [:show, :players, :edit, :update, :destroy]
 
   def new
@@ -7,9 +7,10 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @bps      = BoardPlayer.where(board: @board)
-    @records  = Record.where(board: @board).order(created_at: :desc)
-    @new_game = Record.new
+    @bps       = BoardPlayer.where(board: @board)
+    @records   = Record.includes(:board, :board_player).order(created_at: :desc)
+    @score_sum = Record.where(board: @board).group(:board_player_id).sum(:score)
+    @new_game  = Record.new
   end
 
   def edit

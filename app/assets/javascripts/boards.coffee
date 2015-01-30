@@ -38,11 +38,24 @@ $ ->
       $('input#board_player_player_id').val('')
 
     # --
+    select_first = 0
     $('.modal-body > select').change ->
-      console.log $(this).html()
-      console.log $('.modal-body').index($(this).parent())
+      if select_first == 0
+        select_first = 1
+        select_count = $('.modal-body > select').length
+        selected_index = $('.modal-body > select').index(this)
+        score = $(this).val()
+        share_score = parseInt(-score / (select_count - 1))
 
+        $('.modal-body > select').each (index) ->
+          return true if index == selected_index
+          $(this).val(share_score)
+          console.log share_score
 
+    $('#new_game').on 'hidden.bs.modal', ->
+      select_first = 0
+      $('.modal-body > select').each (index) ->
+        $(this).val(0)
 
 
   $(document).ready(initialize)

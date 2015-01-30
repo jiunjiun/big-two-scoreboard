@@ -34,11 +34,14 @@
         - @bps.each do |bp|
           %th
             = board_player_name(bp)
+            (
+            %span{class: @score_sum[bp.id] > 0 ? 'win-score': ''}= @score_sum[bp.id]
+            )
     %tbody.valign-middle
       - recored_transform(@bps, @records).each_with_index do |records|
         %tr
           - records.each do |record|
-            %td= record
+            %td{class: record > 0 ? 'win-score': ''}= record
 
 #new_game.modal.fade{:role => "dialog", :style => "display: none;", :tabindex => "-1"}
   .modal-dialog{ style: "z-index: 1060;"}
