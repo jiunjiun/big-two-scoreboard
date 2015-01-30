@@ -9,7 +9,8 @@ module BoardsHelper
 
   def options_from_wager(wager)
     result = []
-    Array(-200..200).each {|num| result.push([num * wager, num * wager]) }
+    range_base = 300
+    Array(-range_base..range_base).each {|num| result.push([num * wager, num * wager]) }
     options_for_select(result, 0)
   end
 
