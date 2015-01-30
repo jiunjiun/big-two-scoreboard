@@ -1,1 +1,1 @@
-# big-two-scoreboard
+# Scoreboard

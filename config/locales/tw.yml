@@ -22,6 +22,7 @@ tw:
     back               : '返回'
     set_player         : '設定玩家'
     new_game           : '新遊戲'
+    edit_game          : '更新遊戲'
     new_player         : '新玩家'
     game_mode          : '遊戲模式'
     players            : '玩家清單'

@@ -38,17 +38,19 @@ $ ->
       $('input#board_player_player_id').val('')
 
     # --
+    # show page
+    # - new game modal
     select_first = 0
-    $('.modal-body > select').change ->
-      if select_first == 0
+    $('#new_game .modal-body > select').change ->
+      if select_first is 0
         select_first = 1
         select_count = $('.modal-body > select').length
         selected_index = $('.modal-body > select').index(this)
         score = $(this).val()
         share_score = parseInt(-score / (select_count - 1))
 
-        $('.modal-body > select').each (index) ->
-          return true if index == selected_index
+        $('#new_game .modal-body > select').each (index) ->
+          return true if index is selected_index
           $(this).val(share_score)
           console.log share_score
 
@@ -56,6 +58,19 @@ $ ->
       select_first = 0
       $('.modal-body > select').each (index) ->
         $(this).val(0)
+
+
+    # edit game modal
+    $('.table tr td').click ->
+      scroes = []
+      $(this).parent().find('td').each (key, elm) ->
+        return true if key is 0
+        scroes.push $(this).html()
+
+      $('#edit_game select').each (index) ->
+        $(this).val(scroes[index])
+
+      # $('#edit_game').modal('show')
 
 
   $(document).ready(initialize)

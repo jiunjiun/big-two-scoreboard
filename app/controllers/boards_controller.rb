@@ -50,6 +50,11 @@ class BoardsController < ApplicationController
     end
     redirect_to board_path
   end
+
+  def update_game
+
+    redirect_to board_path
+  end
   # --
 
   # Player

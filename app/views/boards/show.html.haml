@@ -13,35 +13,30 @@
       %i.panel-title-icon.fa.fa-bars
       = @board.title
     .panel-heading-controls
-      %span.panel-heading-text
-
-      -# %ul.pagination.pagination-xs
-      -#   %li
-      -#     %a{:href => "#"} «
-      -#   %li.active
-      -#     %a{:href => "#"} 1
-      -#   %li
-      -#     %a{:href => "#"} 2
-      -#   %li
-      -#     %a{:href => "#"} 3
-      -#   %li
-      -#     %a{:href => "#"} »
+      -# = will_paginate @records, class: "pagination-xs", renderer: BootstrapPagination::Rails, previous_label: '«', next_label: '»'
     / / .panel-heading-controls
   / / .panel-heading
-  %table.table
+  %table.table.table-hover
     %thead
       %tr
+        %th.col-md-1
         - @bps.each do |bp|
-          %th
+          %th.text-center
             = board_player_name(bp)
             (
             %span{class: @score_sum[bp.id] > 0 ? 'win-score': ''}= @score_sum[bp.id]
             )
     %tbody.valign-middle
-      - recored_transform(@bps, @records).each_with_index do |records|
+      - all_records = recored_transform(@bps, @records)
+      - all_records.each_with_index do |records, rindex|
         %tr
-          - records.each do |record|
-            %td{class: record > 0 ? 'win-score': ''}= record
+          - records.each_with_index do |record, index|
+            - if index == 0
+              %td.text-center
+                %span{data: {toggle: "tooltip", placement: "bottom", "original-title"=> l(record, format: :ymds)}}
+                  = "##{all_records.size - rindex}"
+            - else
+              %td.text-center{class: record > 0 ? 'win-score': ''}= record
 
 #new_game.modal.fade{:role => "dialog", :style => "display: none;", :tabindex => "-1"}
   .modal-dialog{ style: "z-index: 1060;"}
@@ -59,6 +54,20 @@
         .modal-footer
           = f.submit t('helpers.cancel'), class: 'btn btn-default btn-flat', data: {dismiss: 'modal'}
           = f.submit t('helpers.clearing'), class: 'btn btn-success btn-flat'
-    / / .modal-content
-  / / .modal-dialog
-/ / .modal
+
+#edit_game.modal.fade{:role => "dialog", :style => "display: none;", :tabindex => "-1"}
+  .modal-dialog{ style: "z-index: 1060;"}
+    .modal-content
+      = form_for @new_game, url:update_game_board_path do |f|
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h4.modal-title= t('helpers.edit_game')
+        .modal-body
+          - @bps.each do |bp|
+            = label_tag board_player_name(bp), nil, class: 'control-label'
+            = select_tag 'scores[]', options_from_wager(@board.wager), {class: 'form-control'}
+            = hidden_field_tag 'board_players[]', bp.id
+            %br/
+        .modal-footer
+          = f.submit t('helpers.cancel'), class: 'btn btn-default btn-flat', data: {dismiss: 'modal'}
+          = f.submit t('helpers.clearing'), class: 'btn btn-success btn-flat'

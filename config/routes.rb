@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       delete 'destroy_player/:bp_id', to: 'boards#destroy_player', as: 'destroy_player'
 
       post 'create_game'
+      post 'update_game'
     end
 
     collection do

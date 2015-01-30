@@ -64,6 +64,10 @@ gem "font-awesome-rails"
 gem 'bootstrap-sass'
 gem 'haml'
 
+# auto page
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
+
 # config file
 gem 'settingslogic'
 

@@ -20,7 +20,7 @@ module BoardsHelper
 
     bps.each { |bp| bps_arr.push(bp.id) }
 
-    record_arr = Array.new(bps.size, 0)
+    record_arr = Array.new(bps.size , 0)
     cr = tmp_cr = nil
     records.each_with_index do |record, i|
       cr = record.created_at
@@ -28,11 +28,14 @@ module BoardsHelper
 
       if cr.to_s != tmp_cr.to_s
         tmp_cr = record.created_at
+        record_arr[0] = tmp_cr
         new_records.push(record_arr)
-        record_arr = Array.new(bps.size, 0)
+        record_arr = Array.new(bps.size + 1, 0)
       end
-      record_arr[bps_arr.index(record.board_player_id)] = record.score
+      record_arr[bps_arr.index(record.board_player_id) + 1] = record.score
     end
+    record_arr[0] = tmp_cr
     new_records.push(record_arr)
+    new_records
   end
 end

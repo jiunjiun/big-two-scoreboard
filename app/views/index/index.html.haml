@@ -6,20 +6,11 @@
       %span.panel-heading-text
         = link_to t('helpers.add'), new_board_path, class: "btn btn-xs btn-success"
         \&nbsp;&nbsp;
-        -# %span.text-light-gray
-          -# |
-        -# \&nbsp;&nbsp;
-      -# %ul.pagination.pagination-xs
-      -#   %li
-      -#     %a{:href => "#"} «
-      -#   %li.active
-      -#     %a{:href => "#"} 1
-      -#   %li
-      -#     %a{:href => "#"} 2
-      -#   %li
-      -#     %a{:href => "#"} 3
-      -#   %li
-      -#     %a{:href => "#"} »
+        - if @boards.count > 15
+          %span.text-light-gray
+            |
+          \&nbsp;&nbsp;
+      = will_paginate @boards, class: "pagination-xs", renderer: BootstrapPagination::Rails, previous_label: '«', next_label: '»'
     / / .panel-heading-controls
   / / .panel-heading
   %table.table
